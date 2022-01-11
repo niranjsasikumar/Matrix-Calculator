@@ -1,5 +1,3 @@
-package matrix_calculator;
-
 import java.util.Scanner;
 
 public class Operation {

@@ -1,5 +1,3 @@
-package matrix_calculator;
-
 public class Matrix {
   private String name;
   private int numberOfRows;

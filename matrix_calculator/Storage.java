@@ -1,5 +1,3 @@
-package matrix_calculator;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -31,7 +29,6 @@ public class Storage {
         if (answer.equals("Y") || answer.equals("y")) {
           setName(matrix, "Please enter a name for the matrix (alphanumeric characters only): ",
               "Matrix saved successfully.");
-          matrices.add(matrix);
           return;
         } else if (answer.equals("N") || answer.equals("n"))
           return;
@@ -54,8 +51,15 @@ public class Storage {
 
       try {
         name = userInput.nextLine();
+
+        if (getMatrix(name) != null) {
+          overwriteMatrix(getMatrix(name), matrix, name, success);
+          return;
+        }
+
         if (isValidName(name)) {
           matrix.setName(name);
+          matrices.add(matrix);
           System.out.println("\n" + success);
           return;
         } else {
@@ -67,6 +71,31 @@ public class Storage {
         name = null;
       }
     }
+  }
+
+  private void overwriteMatrix(Matrix oldMatrix, Matrix newMatrix, String name, String success) {
+    String answer = null;
+    Scanner userInput = new Scanner(System.in);
+
+    System.out.println("\nA matrix with this name already exists. Would you like to overwrite it?\n[Y] Yes\n[N] No");
+
+    try {
+        answer = userInput.nextLine();
+        if (answer.equals("Y") || answer.equals("y")) {
+          matrices.remove(oldMatrix);
+          newMatrix.setName(name);
+          matrices.add(newMatrix);
+          System.out.println("\n" + success);
+          return;
+        } else if (answer.equals("N") || answer.equals("n"))
+          return;
+        else {
+          throw new Exception();
+        }
+      } catch (Exception e) {
+        System.out.println("Invalid answer. Please enter a valid answer.");
+        answer = null;
+      }
   }
 
   private Matrix getMatrixFromName(String prompt) {
@@ -177,6 +206,9 @@ public class Storage {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to rename or enter | to cancel: ");
 
+    if (matrix == null)
+      return;
+    
     setName(matrix, "Please enter the new name for the matrix (alphanumeric characters only): ",
         "Matrix renamed successfully.");
   }
@@ -185,13 +217,20 @@ public class Storage {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to delete or enter | to cancel: ");
 
+    if (matrix == null)
+      return;
+    
     matrices.remove(matrix);
+    matrix = null;
     System.out.println("\nMatrix deleted successfully.");
   }
 
   public void printMatrix() {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to print or enter | to cancel: ");
+    
+    if (matrix == null)
+      return;
     
     System.out.println("\n" + matrix);
   }
