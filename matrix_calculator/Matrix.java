@@ -27,10 +27,12 @@ public class Matrix {
     return numberOfColumns;
   }
 
+  // Sets the row of the Matrix object at the index specified by rowNumber to the array row
   public void setRow(int rowNumber, double[] row) {
     this.matrix[rowNumber] = row;
   }
 
+  // Returns a String that depicts the Matrix object
   public String toString() {
     String result = "";
 
@@ -49,6 +51,7 @@ public class Matrix {
     return result;
   }
 
+  // Returns the matrix resulting from the matrix addition of matrix1 and matrix2
   public static Matrix addition(Matrix matrix1, Matrix matrix2) {
     Matrix result = new Matrix("", matrix1.numberOfRows, matrix1.numberOfColumns);
 
@@ -61,6 +64,7 @@ public class Matrix {
     return result;
   }
 
+  // Returns the matrix resulting from the matrix subtraction of matrix1 and matrix2
   public static Matrix subtraction(Matrix matrix1, Matrix matrix2) {
     Matrix result = new Matrix("", matrix1.numberOfRows, matrix1.numberOfColumns);
 
@@ -73,6 +77,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the matrix resulting from the scalar multiplication of the Matrix object and scalar
   public Matrix scalarMultiplication(double scalar) {
     Matrix result = new Matrix("", this.numberOfRows, this.numberOfColumns);
     
@@ -84,6 +89,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the matrix resulting from the matrix multiplication of matrix1 and matrix2
   public static Matrix matrixMultiplication(Matrix matrix1, Matrix matrix2) {
     Matrix result = new Matrix("", matrix1.numberOfRows, matrix2.numberOfColumns);
     
@@ -100,6 +106,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the matrix resulting from transposing the Matrix object
   public Matrix transpose() {
     Matrix result = new Matrix("", this.numberOfColumns, this.numberOfRows);
     
@@ -111,6 +118,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the determinant of the Matrix object
   public double determinant() {
     if(this.numberOfRows == 1)
       return this.matrix[0][0];
@@ -127,6 +135,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the cofactor matrix of the Matrix object
   private Matrix cofactor(int row, int column) {
     Matrix result = new Matrix("", this.numberOfRows - 1, this.numberOfColumns - 1);
     
@@ -146,6 +155,7 @@ public class Matrix {
     return result;
   }
   
+  // Returns the inverse of the Matrix object
   public Matrix inverse() {
     Matrix adjugate = new Matrix("", this.numberOfRows, this.numberOfColumns);
     
@@ -158,6 +168,7 @@ public class Matrix {
     return adjugate.scalarMultiplication(1 / this.determinant());
   }
   
+  // Returns the trace of the Matrix object
   public double trace() {
     double result = 0;
     

@@ -7,6 +7,7 @@ public class Operation {
     this.storage = storage;
   }
 
+  // Asks the user to create a new matrix or use an existing matrix and returns the matrix the user creates or selects
   private Matrix promptForMatrix() {
     Scanner userInput = new Scanner(System.in);
     String answer = null;
@@ -37,6 +38,7 @@ public class Operation {
     return matrix;
   }
 
+  // Asks the user for the name of a matrix and returns the matrix with that name or null if the user decides to cancel
   private Matrix getMatrixFromName() {
     String name = null;
     Matrix matrix = null;
@@ -63,6 +65,7 @@ public class Operation {
     return matrix;
   }
 
+  // Returns whether matrix1 and matrix2 are the same size or not
   private boolean isSameSize(Matrix matrix1, Matrix matrix2) {
     if (matrix1.getNumberOfRows() == matrix2.getNumberOfRows()
         && matrix1.getNumberOfColumns() == matrix2.getNumberOfColumns())
@@ -71,12 +74,14 @@ public class Operation {
     return false;
   }
 
+  // Prints the matrix that results from an operation
   private void outputResult(Matrix matrix) {
     System.out.println("\nThe resulting matrix:");
     System.out.println(matrix);
     storage.promptToSave(matrix);
   }
 
+  // Asks the user to create or select two matrices and prints the result of performing matrix addition on the two matrices
   public void addition() {
     System.out.println("\nFirst matrix:");
     Matrix matrix1 = promptForMatrix();
@@ -97,6 +102,7 @@ public class Operation {
     outputResult(result);
   }
 
+  // Asks the user to create or select two matrices and prints the result of performing matrix subtraction on the two matrices
   public void subtraction() {
     System.out.println("\nFirst matrix:");
     Matrix matrix1 = promptForMatrix();
@@ -117,6 +123,7 @@ public class Operation {
     outputResult(result);
   }
 
+  // Asks the user to create or select a matrix and enter a scalar value, then prints the result of performing scalar multiplication using the matrix and the scalar value
   public void scalarMultiplication() {
     System.out.println("\nMatrix:");
     Matrix matrix = promptForMatrix();
@@ -141,6 +148,7 @@ public class Operation {
     outputResult(result);
   }
 
+  // Asks the user to create or select two matrices and prints the result of performing matrix multiplication on the two matrices
   public void matrixMultiplication() {
     System.out.println("\nFirst matrix:");
     Matrix matrix1 = promptForMatrix();
@@ -162,6 +170,7 @@ public class Operation {
     outputResult(result);
   }
 
+  // Asks the user to create or select a matrix and prints the result of transposing the matrix
   public void transpose() {
     System.out.println("\nMatrix:");
     Matrix matrix = promptForMatrix();
@@ -172,6 +181,7 @@ public class Operation {
     outputResult(result);
   }
 
+  // Asks the user to create or select a matrix and prints the determinant of the matrix
   public void determinant() {
     System.out.println("\nMatrix:");
     Matrix matrix = promptForMatrix();
@@ -187,6 +197,7 @@ public class Operation {
     System.out.println("\nDeterminant: " + result);
   }
   
+  // Asks the user to create or select a matrix and prints the inverse of the matrix
   public void inverse() {
     System.out.println("\nMatrix:");
     Matrix matrix = promptForMatrix();
@@ -207,6 +218,7 @@ public class Operation {
     outputResult(result);
   }
   
+  // Asks the user to create or select a matrix and prints the trace of the matrix
   public void trace() {
     System.out.println("\nMatrix:");
     Matrix matrix = promptForMatrix();

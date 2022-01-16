@@ -37,6 +37,7 @@ class Main {
     System.exit(0);
   }
   
+  // Fills the commands HashMap with the names of the supported commands.
   private static void initializeCommands(HashMap<Integer, String> commands) {
     commands.put(1, "createMatrix");
     commands.put(2, "renameMatrix");

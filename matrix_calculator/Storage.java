@@ -2,12 +2,13 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Storage {
-  private ArrayList<Matrix> matrices;
+  private ArrayList<Matrix> matrices; // Stores the matrices saved by the user
 
   public Storage() {
     this.matrices = new ArrayList<>();
   }
 
+  // Returns the matrix with the name that matches the String name
   public Matrix getMatrix(String name) {
     for (Matrix matrix : matrices) {
       if (matrix.getName().equals(name))
@@ -17,6 +18,7 @@ public class Storage {
     return null;
   }
 
+  // Asks the user if they want to save the Matrix object matrix
   public void promptToSave(Matrix matrix) {
     Scanner userInput = new Scanner(System.in);
     String answer = null;
@@ -27,8 +29,7 @@ public class Storage {
       try {
         answer = userInput.nextLine();
         if (answer.equals("Y") || answer.equals("y")) {
-          setName(matrix, "Please enter a name for the matrix (alphanumeric characters only): ",
-              "Matrix saved successfully.");
+          setName(matrix, "Please enter a name for the matrix (alphanumeric characters only): ", "Matrix saved successfully.");
           return;
         } else if (answer.equals("N") || answer.equals("n"))
           return;
@@ -42,6 +43,7 @@ public class Storage {
     }
   }
 
+  // Asks the user to enter a name for the matrix that they want to save and adds it to the list of saved matrices
   private void setName(Matrix matrix, String prompt, String success) {
     Scanner userInput = new Scanner(System.in);
     String name = null;
@@ -73,6 +75,7 @@ public class Storage {
     }
   }
 
+  // Asks the user if they want to overwrite an existing matrix with the matrix they want to save having the same name
   private void overwriteMatrix(Matrix oldMatrix, Matrix newMatrix, String name, String success) {
     String answer = null;
     Scanner userInput = new Scanner(System.in);
@@ -98,6 +101,7 @@ public class Storage {
       }
   }
 
+  // Prompts the user for the name of a matrix and returns the Matrix object having that name or returns null if there is no matrix with that name
   private Matrix getMatrixFromName(String prompt) {
     String name = null;
     Matrix matrix = null;
@@ -124,6 +128,7 @@ public class Storage {
     return matrix;
   }
 
+  // Returns whether the String name is a valid name containing only alphanumeric characters
   private boolean isValidName(String name) {
     for (int i = 0; i < name.length(); i++) {
       if (!Character.isLetterOrDigit(name.charAt(i)))
@@ -133,6 +138,7 @@ public class Storage {
     return true;
   }
 
+  // Prompts the user to create a new matrix and returns the resulting Matrix object
   public Matrix createMatrix() {
     int numberOfRows = getValidNumber("\nEnter the number of rows: ");
     int numberOfColumns = getValidNumber("Enter the number of columns: ");
@@ -147,6 +153,7 @@ public class Storage {
     return result;
   }
 
+  // Prompts the user to enter a valid integer between 1 and 15 and returns the value
   private int getValidNumber(String prompt) {
     int num = -1;
     Scanner userInput = new Scanner(System.in);
@@ -170,6 +177,7 @@ public class Storage {
     return num;
   }
 
+  // Prompts the user to enter the values in each row of the matrix and sets each row of the matrix to the entered values
   private void fillMatrix(Matrix matrix) {
     Scanner userInput = new Scanner(System.in);
 
@@ -202,6 +210,7 @@ public class Storage {
     }
   }
 
+  // Prompts the user for the matrix they want to rename and the new name, then renames the matrix to the new name
   public void renameMatrix() {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to rename or enter | to cancel: ");
@@ -213,6 +222,7 @@ public class Storage {
         "Matrix renamed successfully.");
   }
 
+  // Prompts the user for the name of the matrix they want to delete and deletes the corresponding matrix
   public void deleteMatrix() {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to delete or enter | to cancel: ");
@@ -225,6 +235,7 @@ public class Storage {
     System.out.println("\nMatrix deleted successfully.");
   }
 
+  // Prompts the user for the name of the matrix they want to print and prints the corresponding matrix
   public void printMatrix() {
     Matrix matrix =
         getMatrixFromName("Please enter the name of the matrix to print or enter | to cancel: ");
@@ -234,7 +245,8 @@ public class Storage {
     
     System.out.println("\n" + matrix);
   }
-  
+
+  // Prints the names of the matrices that the user has saved so far
   public void listSavedMatrices() {
     System.out.println("\nSaved matrices:");
     
